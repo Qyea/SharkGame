@@ -1,13 +1,14 @@
-let canvas = document.getElementById('game');
-let context = canvas.getContext('2d');
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
 
-const ground = new Image();//устанавливаем фон
+const box = 32; //размер одного квадратика поля
+
+let ground = new Image();//устанавливаем фон
 ground.src = '../img/ground.png';
 
-const foodImg = new Image();
-foodImg.src = '../img/fish02.png'; 
+let foodImg = new Image();
+foodImg.src = '../img/fish02.png';
 
-let box = 32; //размер одного квадратика поля
 
 let score = 0;  //счетчик
 
@@ -15,6 +16,24 @@ let food = {
   x: Math.floor((Math.random() * 17 + 1)) * box,
   y: Math.floor((Math.random() * 15 + 3)) * box
 };
+
+
+/* Аудио */
+const dead = new Audio();
+const eat = new Audio();
+const up = new Audio();
+const left = new Audio();
+const right = new Audio();
+const down = new Audio();
+
+dead.crs ="audio/dead.mp3"
+eat.crs ="audio/eat.mp3"
+up.crs ="audio/up.mp3"
+left.crs ="audio/left.mp3"
+right.crs ="audio/right.mp3"
+down.crs ="audio/down.mp3"
+/* Аудио */
+
 
 let shark = [];
 shark[0] = {
@@ -28,15 +47,19 @@ let dir;//направление движения
 
 function direction(event) {
     if (event.keyCode === 37 && dir!=="right"){
-        dir = "left";
+      left.play();
+      dir = "left";
     } else if(event.keyCode === 38 && dir!=="down"){
-        dir = "up";
+      up.play();
+      dir = "up";
     }
     else if(event.keyCode === 39 && dir!=="left"){
-        dir = "right";
+      right.play();
+      dir = "right";
     }
     else if(event.keyCode === 40 && dir!=="up"){
-        dir = "down";
+      down.play();
+      dir = "down";
     }
 }
 /*Проверка на столкновение с хвостом*/
@@ -85,6 +108,7 @@ function drawGame() {
     if(sharkX < box || sharkX > box * 17
         || sharkY < 3 * box || sharkY > box * 17){
             clearInterval(game);
+            dead.play();
         }
 
 
