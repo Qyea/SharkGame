@@ -1,20 +1,3 @@
-/* Аудио */
-const dead = new Audio();
-const eat = new Audio();
-const up = new Audio();
-const left = new Audio();
-const right = new Audio();
-const down = new Audio();
-
-dead.crs ="audio/dead.mp3"
-eat.crs ="audio/eat.mp3"
-up.crs ="audio/up.mp3"
-left.crs ="audio/left.mp3"
-right.crs ="audio/right.mp3"
-down.crs ="audio/down.mp3"
-/* Аудио */
-
-
 let scoreBlock;
 let score = 0;
 
@@ -37,7 +20,7 @@ const snake = {
 let berry = {
 	x: 0,
 	y: 0
-}
+} 
 
 
 let canvas = document.querySelector("#game-canvas");
@@ -75,9 +58,9 @@ function drawSnake() {
 
 	snake.tails.forEach( function(el, index){
 		if (index == 0) {
-			context.fillStyle = "#FA0556";
+			context.fillStyle = "#0dbd5c";
 		} else {
-			context.fillStyle = "#A00034";
+			context.fillStyle = "#0a6138";
 		}
 		context.fillRect( el.x, el.y, config.sizeCell, config.sizeCell );
 
@@ -151,20 +134,16 @@ function getRandomInt(min, max) {
 }
 
 document.addEventListener("keydown", function (e) {
-	if (e.code == "KeyW") {
-		up.play();
+	if ( e.code == "KeyW" ) {
 		snake.dy = -config.sizeCell;
 		snake.dx = 0;
-	} else if (e.code == "KeyA") {
-		left.play();
+	} else if ( e.code == "KeyA" ) {
 		snake.dx = -config.sizeCell;
 		snake.dy = 0;
-	} else if (e.code == "KeyS") {
-		down.play();
+	} else if ( e.code == "KeyS" ) {
 		snake.dy = config.sizeCell;
 		snake.dx = 0;
-	} else if (e.code == "KeyD") {
-		right.play();
+	} else if ( e.code == "KeyD" ) {
 		snake.dx = config.sizeCell;
 		snake.dy = 0;
 	}
