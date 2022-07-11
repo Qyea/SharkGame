@@ -89,7 +89,7 @@ function drawSnake() {
 
 		for( let i = index + 1; i < snake.tails.length; i++ ) {
 
-			if ( el.x == snake.tails[i].x && el.y == snake.tails[i].y ) {
+			if ( el.x === snake.tails[i].x && el.y === snake.tails[i].y ) {
 				refreshGame();
 			}
 
@@ -151,19 +151,19 @@ function getRandomInt(min, max) {
 }
 
 document.addEventListener("keydown", function (e) {
-	if (e.code == "KeyW") {
+	if (e.code === "KeyW") {
 		up.play();
 		snake.dy = -config.sizeCell;
 		snake.dx = 0;
-	} else if (e.code == "KeyA") {
+	} else if (e.code === "KeyA") {
 		left.play();
 		snake.dx = -config.sizeCell;
 		snake.dy = 0;
-	} else if (e.code == "KeyS") {
+	} else if (e.code === "KeyS") {
 		down.play();
 		snake.dy = config.sizeCell;
 		snake.dx = 0;
-	} else if (e.code == "KeyD") {
+	} else if (e.code === "KeyD") {
 		right.play();
 		snake.dx = config.sizeCell;
 		snake.dy = 0;
